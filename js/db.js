@@ -1,4 +1,4 @@
-// Robert James Brennan 12357031
+// Author: Robert James Brennan 
 
 document.addEventListener("deviceready", onDeviceReady, false);
            
@@ -26,7 +26,6 @@ function onDeviceReady(){
 }*/
 function createDB(tx){
     //tx.executeSql('DROP TABLE IF EXISTS DEMO');//Remove to save database for next runtime
-    //tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, title, image, description)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, title, date, description)');//Create db table
 }
 

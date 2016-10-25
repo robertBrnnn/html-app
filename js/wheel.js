@@ -1,5 +1,5 @@
 // This is a JavaScript file containing a bilevel partition with floating text layer
-// Robert James Brennan 12357031
+// Author: Robert James Brennan
 /* References
 
     https://gist.github.com/ezyang/4236639    Computing text roation
