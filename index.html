@@ -1,0 +1,124 @@
+<!-- Robert James Brennan 12357031 
+    
+    Main Index file for Moodlet phone application using Jquery Mobile single page layout
+
+-->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="components/jquery-mobile/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" href="components/jquery-mobile/jquery.mobile.theme-1.4.5.css">
+    <link rel="stylesheet" href="components/jquery-mobile/jquery.mobile.structure-1.4.5.css">
+    <script src="components/jquery-mobile/jquery.js"></script>
+    <script src="components/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/wheel.js"></script>
+    <script type="text/javascript" src="js/db.js"></script>
+    <style>
+     path {
+        stroke: #fff;
+        fill-rule: evenodd;
+    }   
+    </style>
+    
+    <script>
+    $(document).on("pagecreate", "div[data-role=page]", function(event){
+    // Every time a page is being created
+
+    if ($(this).attr("id") == "page1") {
+        // Only when on #page1
+        runWheel();
+        }
+    });
+    
+    </script>
+    
+</head>
+<body>
+    <div data-role="page" id="page1" >
+        <script src="components/d3/d3.min.js"></script>
+        
+        <div data-role="header" data-theme="a" data-position="fixed">
+            <h1>Explore</h1>
+        </div>
+        
+        <div role="main" class="ui-content" data-theme="c">
+            
+            <ul data-role="listview" data-inset="true" data-divider-theme="a">
+                <li data-role="list-divider" role="heading">Instructions</li>
+                <li>Step 1: <br> Scroll downwards to the feelings wheel</li>
+                <li>Step 2: <br> Slect one of six primary feelings from the inner circle</li>
+                <li>Step 3: <br> Select the most appropriate from the remaining six</li>
+                <li>Step 4: <br> Click on the diary icon, on the bottom of the page</li>
+                <li>Step 5: <br> Record your mood, and a description of the mood</li>
+                <li>Step 6: <br> Tap submit, and it'll be rcorded in your diary</li>
+                <li data-role="list-divider" role="heading">IMPORTANT</li>
+                <li>Record your mood at least once a day. The information collected will allow you to become more present and aware of your mood and open your life to new possibilities</li>
+            </ul>
+            
+            <div id = "wheel"></div><!-- Wheel.js targets wheel div and inserts SVG -->
+        </div>
+        
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="" data-icon="home" data-transition="slide">Home</a></li>
+                    <li><a href="#page2" data-icon="plus" data-transition="slide" id="d">Diary Entry</a></li>
+                    
+                </ul>
+            </div>
+        </div>    
+    </div>
+    
+    <div data-role="page" id="page2" data-cache="false">
+        <div data-role="header" data-theme="a" data-position="fixed">
+            <h1>How are you feeling?</h1>
+        </div>
+        <div data-role="content">
+            
+            <form method="POST" onSubmit="return submitForm()" data-ajax="false"><!-- Calls submitForm function in db.js -->
+             <input name="title" type="text" placeholder="How are you feeling?">
+             <input name="description" type="text" placeholder="Description">
+             <input type="submit" value="Submit">
+            </form>
+            
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page1" data-icon="home" data-direction="reverse" data-transition="slide">Home</a></li>
+                    <li><a href="" data-icon="plus" >Diary Entry</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div data-role="page" id="page3" data-add-back-btn="true" data-position="fixed">
+        <div data-role="header" data-theme="a">
+            <h1>View your diary</h1>
+        </div>
+        
+        <div data-role="content" data-theme="a">
+            <div id="output"></div>
+            <ul id="resultlist" data-role="listview" data-inset="true" data-divider-theme="a"></ul><!-- Rsultlist populated by db.js script -->
+        </div>
+        
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page1" data-icon="home" data-direction="reverse" data-transition="slide">Home</a></li>
+                    <li><a href="#page2" data-icon="plus" data-direction="reverse" data-transition="slide">Diary Entry</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
